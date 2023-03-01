@@ -10,7 +10,7 @@ import java.util.Set;
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
 
     private String name;
     private String addressLine1;
@@ -20,7 +20,7 @@ public class Publisher {
 
     @OneToMany
     @JoinColumn(name = "publisher_id")
-    private Set<Book> Books = new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 
     public Publisher(){
     }
@@ -74,19 +74,19 @@ public class Publisher {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     public Set<Book> getBooks() {
-        return Books;
+        return books;
     }
 
     public void setBooks(Set<Book> books) {
-        Books = books;
+        books = books;
     }
 
     @Override
@@ -96,18 +96,22 @@ public class Publisher {
 
         Publisher publisher = (Publisher) o;
 
-        if (!Objects.equals(Id, publisher.Id)) return false;
+        /*if (!Objects.equals(id, publisher.id)) return false;
         if (!Objects.equals(name, publisher.name)) return false;
         if (!Objects.equals(addressLine1, publisher.addressLine1))
             return false;
         if (!Objects.equals(city, publisher.city)) return false;
         if (!Objects.equals(state, publisher.state)) return false;
-        return Objects.equals(zip, publisher.zip);
+
+         */
+
+        //return Objects.equals(zip, publisher.zip);
+        return id != null ? id.equals(publisher.id) : publisher.id == null;
     }
 
     @Override
     public int hashCode() {
-        int result = Id != null ? Id.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (addressLine1 != null ? addressLine1.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
@@ -118,8 +122,8 @@ public class Publisher {
 
     @Override
     public String toString() {
-        return "publisher{" +
-                "Id=" + Id +
+        return "Publisher{" +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", addressLine1='" + addressLine1 + '\'' +
                 ", city='" + city + '\'' +
