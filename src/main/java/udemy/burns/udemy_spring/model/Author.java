@@ -1,32 +1,39 @@
 package udemy.burns.udemy_spring.model;
 
 import jakarta.persistence.*;
-
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
-@Entity //needed to convert to an entity in JPA and hibernate knows
+
+/**
+ * Created by jt on 12/22/19.
+ */
+@Entity
 public class Author {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String firstName;
     private String lastName;
 
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> Books = new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 
     public Author() {
-        //JPA required zero argument constructor
     }
 
-    public Author(String firstName, String lastName)
-                  //Set<book> books)
-    {
+    public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.Books = Books;
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -45,36 +52,22 @@ public class Author {
         this.lastName = lastName;
     }
 
-
     public Set<Book> getBooks() {
-        return Books;
+        return books;
     }
 
-    public void setBooks(Set<Book> Books) {
-        this.Books = Books;
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    //to string method
 
     @Override
     public String toString() {
-        return "author{" +
+        return "Author{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                //", books=" + books +
                 '}';
     }
-
-    //hashing and equals code functions
 
     @Override
     public boolean equals(Object o) {
@@ -83,7 +76,7 @@ public class Author {
 
         Author author = (Author) o;
 
-        return Objects.equals(id, author.id);
+        return id != null ? id.equals(author.id) : author.id == null;
     }
 
     @Override

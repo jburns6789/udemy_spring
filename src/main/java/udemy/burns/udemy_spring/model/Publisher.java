@@ -20,7 +20,7 @@ public class Publisher {
 
     @OneToMany
     @JoinColumn(name = "publisher_id")
-    private Set<Book> books = new HashSet<>();
+    private final Set<Book> books = new HashSet<>();
 
     public Publisher(){
     }
@@ -106,7 +106,7 @@ public class Publisher {
          */
 
         //return Objects.equals(zip, publisher.zip);
-        return id != null ? id.equals(publisher.id) : publisher.id == null;
+        return Objects.equals(id, publisher.id);
     }
 
     @Override

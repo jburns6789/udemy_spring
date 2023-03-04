@@ -1,15 +1,16 @@
 package udemy.burns.udemy_spring.model;
 
 import jakarta.persistence.*;
-
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+
 @Entity
 public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String title;
     private String isbn;
 
@@ -18,19 +19,31 @@ public class Book {
 
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
-    inverseJoinColumns = @JoinColumn(name = "author_id"))
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
 
-    public Book(){
-        //zero argument constructor
+    public Book() {
     }
 
-    public Book(String title, String isbn
-                //Set<author> authors
-    ) {
+    public Book(String title, String isbn) {
         this.title = title;
         this.isbn = isbn;
-        //this.authors = authors;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -53,31 +66,18 @@ public class Book {
         return authors;
     }
 
-    public void setAuthors(Set<Author> Authors) {
-        this.authors = Authors;
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    //to string method
 
     @Override
     public String toString() {
-        return "book{" +
+        return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
-                //", authors=" + authors +
                 '}';
     }
-
-    //equals and hash code functions
 
     @Override
     public boolean equals(Object o) {
@@ -86,19 +86,11 @@ public class Book {
 
         Book book = (Book) o;
 
-        return Objects.equals(id, book.id);
+        return id != null ? id.equals(book.id) : book.id == null;
     }
 
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
-    }
-
-    public Publisher getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
     }
 }
