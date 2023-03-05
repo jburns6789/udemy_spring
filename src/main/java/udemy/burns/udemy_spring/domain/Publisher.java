@@ -1,4 +1,4 @@
-package udemy.burns.udemy_spring.model;
+package udemy.burns.udemy_spring.domain;
 
 import jakarta.persistence.*;
 
@@ -20,7 +20,7 @@ public class Publisher {
 
     @OneToMany
     @JoinColumn(name = "publisher_id")
-    private final Set<Book> books = new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 
     public Publisher(){
     }
@@ -77,16 +77,14 @@ public class Publisher {
         return id;
     }
 
-    public void setId(Long id) {
-        id = id;
+    public void setId(Long id) {this.id = id;
     }
 
     public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {
-        books = books;
+    public void setBooks(Set<Book> books) {this.books = books;
     }
 
     @Override
@@ -131,6 +129,5 @@ public class Publisher {
                 ", zip='" + zip + '\'' +
                 '}';
     }
-
 
 }

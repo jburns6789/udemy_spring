@@ -1,8 +1,8 @@
 package udemy.burns.udemy_spring.bootStrap;
 
-import udemy.burns.udemy_spring.model.Author;
-import udemy.burns.udemy_spring.model.Book;
-import udemy.burns.udemy_spring.model.Publisher;
+import udemy.burns.udemy_spring.domain.Author;
+import udemy.burns.udemy_spring.domain.Book;
+import udemy.burns.udemy_spring.domain.Publisher;
 import udemy.burns.udemy_spring.repositories.AuthorRepository;
 import udemy.burns.udemy_spring.repositories.BookRepository;
 import udemy.burns.udemy_spring.repositories.PublisherRepository;

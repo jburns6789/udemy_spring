@@ -1,4 +1,4 @@
-package udemy.burns.udemy_spring.model;
+package udemy.burns.udemy_spring.domain;
 
 import jakarta.persistence.*;
 import java.util.HashSet;

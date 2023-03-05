@@ -10,6 +10,7 @@ import udemy.burns.udemy_spring.repositories.BookRepository;
 //annotate controller class with @Controller
 //this will register the class as a Spring Bean and as a Controller in Spring MVC
 //To map methods to http request paths use @Request Mapping
+
 @Controller
 public class BookController {
     private final BookRepository bookRepository;
