@@ -3,8 +3,8 @@ package udemy.burns.udemy_spring.domain;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+
 
 @Entity
 public class Publisher {
@@ -77,15 +77,13 @@ public class Publisher {
         return id;
     }
 
-    public void setId(Long id) {this.id = id;
-    }
+    public void setId(Long id) {this.id = id;}
 
     public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {this.books = books;
-    }
+    public void setBooks(Set<Book> books) {this.books = books;}
 
     @Override
     public boolean equals(Object o) {
@@ -94,17 +92,17 @@ public class Publisher {
 
         Publisher publisher = (Publisher) o;
 
-        /*if (!Objects.equals(id, publisher.id)) return false;
+        /* if (!Objects.equals(id, publisher.id)) return false;
         if (!Objects.equals(name, publisher.name)) return false;
         if (!Objects.equals(addressLine1, publisher.addressLine1))
             return false;
         if (!Objects.equals(city, publisher.city)) return false;
         if (!Objects.equals(state, publisher.state)) return false;
-
          */
 
         //return Objects.equals(zip, publisher.zip);
-        return Objects.equals(id, publisher.id);
+
+        return id != null ? id.equals(publisher.id) : publisher.id == null;
     }
 
     @Override
@@ -131,3 +129,5 @@ public class Publisher {
     }
 
 }
+
+

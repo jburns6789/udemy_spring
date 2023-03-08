@@ -15,6 +15,8 @@ public class bootStrapData implements CommandLineRunner {
         //Major focus on database mapping and annotations for jpa, hibernate is writing the code
         //behind the scenes for the database queries
         //creating entities and being stored in a H2 database watch publisher relations 18
+
+    //dependency injection below
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
     private final PublisherRepository publisherRepository;
@@ -41,21 +43,23 @@ public class bootStrapData implements CommandLineRunner {
 
         Author eric = new Author("Eric", "Evans");
         Book programming = new Book("Dont Give Up", "456789");
-
         eric.getBooks().add(programming);
         programming.getAuthors().add(eric);
 
         authorRepository.save(eric);
         bookRepository.save(programming);
 
+
         Author rod = new Author("Rod", "Johnson");
         Book noEJB = new Book("J2EE Development w/o  EJ8", "789456");
-
         rod.getBooks().add(noEJB);
         noEJB.getAuthors().add(rod);
 
         noEJB.setPublisher(publisher);
         publisher.getBooks().add(noEJB);
+
+        programming.setPublisher(publisher);
+        publisher.getBooks().add(programming);
 
         authorRepository.save(rod);
         bookRepository.save(noEJB);

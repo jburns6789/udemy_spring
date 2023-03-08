@@ -11,8 +11,8 @@ import java.util.Set;
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)//<--- official jpa entities when annotations are added
+    private Long id; //identifies the object in the database
 
     private String firstName;
     private String lastName;
@@ -20,7 +20,7 @@ public class Author {
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
-    public Author() {
+    public Author() {//jpa requires zero args constructors
     }
 
     public Author(String firstName, String lastName) {
@@ -60,14 +60,20 @@ public class Author {
         this.books = books;
     }
 
+    //display properties of the objects
+
     @Override
     public String toString() {
         return "Author{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", books= " + books +
                 '}';
     }
+
+    //command+n to pull up equals and hashcode this is necessary for to base it on the id
+    //so the databases can read them properly
 
     @Override
     public boolean equals(Object o) {

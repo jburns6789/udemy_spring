@@ -6,21 +6,17 @@ import java.util.Set;
 
 @Entity
 public class Book {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)//<--- for jpa and hibernate mapping official entity
     private Long id;
-
     private String title;
     private String isbn;
-
-    @ManyToOne
-    private Publisher publisher;
-
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
+    @ManyToOne
+    private Publisher publisher;
 
     public Book() {
     }
@@ -30,13 +26,6 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public Publisher getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
-    }
 
     public Long getId() {
         return id;
@@ -70,14 +59,28 @@ public class Book {
         this.authors = authors;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    //display property of the objects
+
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
+                ", authors=" + authors +
                 '}';
     }
+
+    //command+n to pull up equals and hashcode this is necessary for to base it on the id
+    //so the databases can read them properly
 
     @Override
     public boolean equals(Object o) {
